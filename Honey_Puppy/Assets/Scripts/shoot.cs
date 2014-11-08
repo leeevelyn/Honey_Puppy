@@ -11,7 +11,7 @@ public class shoot : MonoBehaviour
     // Myo game object to connect with.
     // This object must have a ThalmicMyo script attached.
     public GameObject myo = null;
-
+	private bool haveBall = false;
 
     // The pose from the last update. This is used to determine if the pose has changed
     // so that actions are only performed upon making them rather than every frame during
@@ -20,9 +20,18 @@ public class shoot : MonoBehaviour
 
 	public Rigidbody playerball;
 	public float speed = 10f;
-	void FireBall () {
-		Rigidbody rocketClone = (Rigidbody)Instantiate (playerball, transform.position, transform.rotation);
+	private Rigidbody rocketClone;
+	void HoldBall () {
+		rocketClone = (Rigidbody)Instantiate (playerball, transform.position + new Vector3(0,0,1), transform.rotation);
+		rocketClone.useGravity = false;
+		rocketClone.transform.parent = this.transform;
+		haveBall = true;
+	}
+	void FireBall (){
+		rocketClone.useGravity = true;
+		rocketClone.transform.parent = null;
 		rocketClone.velocity = transform.forward * speed;
+		haveBall = false;
 	}
 
     // Update is called once per frame.
@@ -37,7 +46,10 @@ public class shoot : MonoBehaviour
         // detected, pose will be set to Pose.Rest. If pose detection is unavailable, e.g. because Myo
         // is not on a user's arm, pose will be set to Pose.Unknown.
         if (thalmicMyo.pose != _lastPose) {
-			if(_lastPose != Pose.FingersSpread && thalmicMyo.pose == Pose.FingersSpread){
+			if(_lastPose != Pose.Fist && thalmicMyo.pose == Pose.Fist && !haveBall){
+				HoldBall();
+			}
+			if(haveBall && thalmicMyo.pose == Pose.FingersSpread){
 				FireBall();
 			}
             _lastPose = thalmicMyo.pose;
