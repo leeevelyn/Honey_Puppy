@@ -2,7 +2,8 @@ fileFormatVersion: 2
 guid: 7e851b29ae61b1f498aeb5687471884f
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - screenFader: {fileID: 100000, guid: d4a0155a99327e74f84289d21985ef5c, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

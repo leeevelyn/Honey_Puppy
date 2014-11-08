@@ -8,7 +8,7 @@ public class EvilCylinder : MonoBehaviour {
 
 	private float _xpos;					// Initial x-position
 	private float _rand_start;				// Random offset at start
-	private float _death_counter = 500f;	// Time since cylinder death
+	public float _death_counter = 5f;		// Time to cylinder death
 	
 	// Flag to determine if cylinder is dead
 	private bool _killed = false;
@@ -36,10 +36,14 @@ public class EvilCylinder : MonoBehaviour {
 		if(!this._killed)
 			this.transform.position = new Vector3(this._xpos + Mathf.Sin(Time.time + this._rand_start), this.transform.position.y, this.transform.position.z);
 
-		// Otherwise, count down and destroy the cylinder
-		else {
+		// Otherwise if it's newly dead, count down
+		else if(this._death_counter > 0f)
 			this._death_counter -= Time.deltaTime;
-			if(this._death_counter <= 0f) {
+
+		// Otherwise, shrink it to nothing and decrement the cylinders on the field
+		else {
+			this.transform.localScale = new Vector3(this.transform.localScale.x * 0.9f, this.transform.localScale.y * 0.9f, this.transform.localScale.z * 0.9f);
+			if(this.transform.localScale.x < 0.1f) {
 				GameState.cylindersOnField--;
 				this.Destroy(this.gameObject);
 			}
