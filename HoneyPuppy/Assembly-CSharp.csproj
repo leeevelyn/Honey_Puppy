@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Dodgeball.cs" />
      <Compile Include="Assets\Scripts\EvilCylinder.cs" />
+     <Compile Include="Assets\Scripts\GameState.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\SceneFade.cs" />
   </ItemGroup>
