@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 2edaa920725b9fd4585735f85a15ac62
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - cylinder: {fileID: 100000, guid: db2889cb74483af489b571843712133d, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
