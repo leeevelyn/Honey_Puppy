@@ -26,7 +26,7 @@ public class GameState : MonoBehaviour {
 	
 	// Update is called once per frame
 	private void Update() {
-		if(GameState.cylindersOnField < 5 + (int)GameState.score / 5) {
+		if(GameState.cylindersOnField < 3 + (int)GameState.score / 5) {
 			GameObject new_cylinder = this.Instantiate(this.cylinder) as GameObject;
 
 			float new_xpos = Random.Range(-7f, 10f);
