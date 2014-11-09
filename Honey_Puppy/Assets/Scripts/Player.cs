@@ -16,18 +16,26 @@ public class Player : MonoBehaviour {
 	/// </summary>
 	private void OnCollisionEnter(Collision other) {
 		if(other.gameObject.name == "Dodgeball(Clone)") {
+<<<<<<< HEAD
 			/*SceneFade other_script = (SceneFade) screenFader.GetComponent(typeof(SceneFade));
 			other_script.EndScene();*/
 			Application.LoadLevel("endscreen");
+=======
+			SceneFade other_script = (SceneFade)screenFader.GetComponent(typeof(SceneFade));
+			this.Destroy(orient.myo);
+			other_script.EndScene();
+>>>>>>> 666cf7d274564c4f9996b4e7d3bb30bea9eb8bb6
 		}
 	}
 	public int speed;
 
-	void Update(){
-		if (Input.GetAxisRaw ("Horizontal")==-1){
-			transform.Translate (-1*Time.deltaTime*speed, 0, 0);
-		} else if (Input.GetAxisRaw ("Horizontal")==1){
-			transform.Translate (1*Time.deltaTime*speed,0,0);
-		}
+	/// <summary>
+	/// Each frame, updates player position based on input.
+	/// </summary>
+	private void Update() {
+		if(Input.GetAxisRaw("Horizontal") == -1)
+			this.transform.Translate(-Time.deltaTime * speed, 0f, 0f);
+		else if(Input.GetAxisRaw("Horizontal") == 1)
+			this.transform.Translate(Time.deltaTime * speed, 0f, 0f);
 	}
 }

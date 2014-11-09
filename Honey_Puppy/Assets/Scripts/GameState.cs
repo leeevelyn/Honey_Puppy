@@ -29,7 +29,10 @@ public class GameState : MonoBehaviour {
 		if(GameState.cylindersOnField < 3 + (int)GameState.score / 5) {
 			GameObject new_cylinder = this.Instantiate(this.cylinder) as GameObject;
 
-			new_cylinder.transform.position = new Vector3(Random.Range(-2f, 6f), 10f, Random.Range(1f, 4f));
+			float new_xpos = Random.Range(-7f, 10f);
+			new_cylinder.transform.position = new Vector3(new_xpos, 10f, Random.Range(-3f, 4f));
+			EvilCylinder other_script = (EvilCylinder)new_cylinder.GetComponent(typeof(EvilCylinder));
+			other_script.xpos = new_xpos;
 			GameState.cylindersOnField++;
 		}
 	}
